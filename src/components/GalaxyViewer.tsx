@@ -43,7 +43,7 @@ export default function GalaxyViewer({
     scene.fog = new THREE.FogExp2(0x020205, 0.015);
 
     const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
-    camera.position.set(0, 25, 45);
+    camera.position.set(0, 150, 250);
     camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
@@ -589,6 +589,7 @@ export default function GalaxyViewer({
     // --- ANIMATION LOOP ---
     let animationFrameId: number;
     let clock = new THREE.Clock();
+    let galaxyTime = 0;
 
     // Camera target states for smooth cinematic pans
     const cameraTargetPos = new THREE.Vector3(0, 25, 45);
@@ -598,18 +599,22 @@ export default function GalaxyViewer({
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
 
+      const delta = Math.min(0.1, clock.getDelta());
       const elapsed = clock.getElapsedTime();
 
+      const speedMultiplier = configRef.current.orbitSpeed !== undefined ? configRef.current.orbitSpeed : 1.0;
+      galaxyTime += delta * speedMultiplier;
+
       // --- 1. ROTATE BACKGROUND GALAXY & ACCRETION DISK ---
-      bhGroup.rotation.y = elapsed * 0.15;
-      starsPoints.rotation.y = elapsed * 0.04;
+      bhGroup.rotation.y = galaxyTime * 0.15;
+      starsPoints.rotation.y = galaxyTime * 0.04;
 
       // Accretion disk individual particles
       const posAttr = adPoints.geometry.getAttribute("position") as THREE.BufferAttribute;
       for (let i = 0; i < adCount; i++) {
         const radius = adRadii[i];
         const speed = adSpeeds[i];
-        const currentAngle = elapsed * speed + i; // Offset start
+        const currentAngle = galaxyTime * speed + i; // Offset start
         const x = Math.cos(currentAngle) * radius;
         const z = Math.sin(currentAngle) * radius;
         posAttr.setX(i, x);
@@ -653,7 +658,7 @@ export default function GalaxyViewer({
         
         // Slow rotation around the galaxy
         const radius = 18 + (idx % 3) * 3;
-        const angle = elapsed * 0.02 + (idx / phraseSprites.length) * Math.PI * 2;
+        const angle = galaxyTime * 0.02 + (idx / phraseSprites.length) * Math.PI * 2;
         sprite.position.x = Math.cos(angle) * radius;
         sprite.position.z = Math.sin(angle) * radius;
       });
@@ -665,7 +670,7 @@ export default function GalaxyViewer({
         
         const orbitRadius = 14 + pIndex * 4;
         const baseSpeed = 0.07;
-        const currentAngle = elapsed * baseSpeed + (pIndex / panelGroups.length) * Math.PI * 2;
+        const currentAngle = galaxyTime * baseSpeed + (pIndex / panelGroups.length) * Math.PI * 2;
 
         // Base orbiting coordinates
         let tx = Math.cos(currentAngle) * orbitRadius;
