@@ -6,6 +6,7 @@ export const DEFAULT_CONFIG: GalaxyConfig = {
   startSubtitle: "For you, who makes my universe shine",
   includeMusic: true,
   musicTrackName: "I Really Want to Stay at Your House",
+  orbitSpeed: 1.0,
   phrases: [
     "ETERNAL LOVE ✦",
     "INFINITE ∞",
