@@ -1,5 +1,5 @@
 // @ts-ignore
-import stayAtYourHouseUrl from "./assets/audio/I Really Want to Stay at Your House.mp3";
+import stayAtYourHouseUrl from "./assets/audio/I Really Want to Stay at Your House - Lofi.mp3";
 
 class CosmicAudioEngine {
   private audio: HTMLAudioElement | null = null;
