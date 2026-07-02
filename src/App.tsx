@@ -37,7 +37,7 @@ export default function App() {
             parsed.pageName = "ICE";
           }
           if (parsed.musicTrackName === "lolivac eternal-love") {
-            parsed.musicTrackName = "I Really Want to Stay at Your House";
+            parsed.musicTrackName = "I Really Want to Stay at Your House - Lofi";
           }
           if (parsed.orbitSpeed === undefined) {
             parsed.orbitSpeed = 1.0;
