@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { GalaxyConfig, GalleryPanel } from "./types";
 import { DEFAULT_CONFIG } from "./defaultConfig";
+import { getAssetUrl } from "./utils";
 import { cosmicAudio } from "./audio";
 import GalaxyViewer from "./components/GalaxyViewer";
 import PasscodeGate from "./components/PasscodeGate";
@@ -905,7 +906,7 @@ export default function App() {
                                 <div className="w-16 h-16 rounded-full border border-[#ffceb5]/30 overflow-hidden shrink-0 relative group bg-slate-950 flex items-center justify-center">
                                   {panel.photoUrl ? (
                                     <img
-                                      src={panel.photoUrl}
+                                      src={getAssetUrl(panel.photoUrl)}
                                       alt="preview"
                                       className="w-full h-full object-cover"
                                       referrerPolicy="no-referrer"
@@ -1030,7 +1031,7 @@ export default function App() {
                       <div className="absolute inset-0 rounded-full border border-[#ff3e00]/40 animate-pulse pointer-events-none" />
                       <div className="w-full h-full rounded-full overflow-hidden relative">
                         <img
-                          src={focusedPanel.photoUrl}
+                          src={getAssetUrl(focusedPanel.photoUrl)}
                           alt={focusedPanel.title}
                           className="w-full h-full object-cover"
                           referrerPolicy="no-referrer"
