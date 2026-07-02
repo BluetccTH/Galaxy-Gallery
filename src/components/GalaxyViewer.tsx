@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { GalaxyConfig, GalleryPanel } from "../types";
+import { getAssetUrl } from "../utils";
 
 interface GalaxyViewerProps {
   config: GalaxyConfig;
@@ -346,7 +347,7 @@ export default function GalaxyViewer({
         const circleGeo = new THREE.CircleGeometry(2.95, 64);
         
         // Dynamic loading of images - standard fallback to Picsum/Unsplash
-        const photoUrl = panel.photoUrl || `https://picsum.photos/seed/${panel.id}/300/300`;
+        const photoUrl = getAssetUrl(panel.photoUrl) || `https://picsum.photos/seed/${panel.id}/300/300`;
         const photoTex = textureLoader.load(photoUrl, undefined, undefined, () => {
           // Fallback image if loading fails
           console.log(`Failed loading ${photoUrl}, using fallback.`);
