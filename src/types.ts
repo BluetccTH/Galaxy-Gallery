@@ -13,4 +13,5 @@ export interface GalaxyConfig {
   musicTrackName: string;
   phrases: string[];
   panels: GalleryPanel[];
+  orbitSpeed: number;
 }
