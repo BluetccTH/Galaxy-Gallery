@@ -5,7 +5,7 @@ export const DEFAULT_CONFIG: GalaxyConfig = {
   startTitle: "Wormhole Portal",
   startSubtitle: "For you, who makes my universe shine",
   includeMusic: true,
-  musicTrackName: "I Really Want to Stay at Your House",
+  musicTrackName: "I Really Want to Stay at Your House - Lofi",
   orbitSpeed: 1.0,
   phrases: [
     "ETERNAL LOVE ✦",
