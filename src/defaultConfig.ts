@@ -1,7 +1,7 @@
 import { GalaxyConfig } from "./types";
 
 export const DEFAULT_CONFIG: GalaxyConfig = {
-  pageName: "ICE",
+  pageName: "Galaxy Gallery",
   startTitle: "Wormhole Portal",
   startSubtitle: "For you, who makes my universe shine",
   includeMusic: true,
