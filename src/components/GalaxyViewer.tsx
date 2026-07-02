@@ -358,7 +358,7 @@ export default function GalaxyViewer({
           map: photoTex,
           side: THREE.DoubleSide,
           transparent: true,
-          opacity: 0.95,
+          opacity: 0.75,
         });
         const photoCircle = new THREE.Mesh(circleGeo, photoMat);
         group.add(photoCircle);
@@ -681,7 +681,7 @@ export default function GalaxyViewer({
           // Freeze orbit, pull closer to screen or make camera point directly
           group.scale.lerp(new THREE.Vector3(1.3, 1.3, 1.3), 0.1);
         } else if (isHovered) {
-          group.scale.lerp(new THREE.Vector3(1.15, 1.15, 1.15), 0.1);
+          group.scale.lerp(new THREE.Vector3(1.22, 1.22, 1.22), 0.1);
         } else {
           group.scale.lerp(new THREE.Vector3(1.0, 1.0, 1.0), 0.1);
         }
@@ -695,12 +695,32 @@ export default function GalaxyViewer({
         // Pulsate frame ring glowing opacity
         const frameRing = group.children[0] as THREE.Mesh;
         if (frameRing && frameRing.material instanceof THREE.MeshBasicMaterial) {
-          frameRing.material.opacity = 0.5 + 0.5 * Math.sin(elapsed * 2 + pIndex);
+          const baseOpacity = 0.5 + 0.5 * Math.sin(elapsed * 2 + pIndex);
+          const targetFrameOpacity = (isHovered || isFocused) ? Math.max(0.85, baseOpacity) : baseOpacity;
+          frameRing.material.opacity = THREE.MathUtils.lerp(frameRing.material.opacity, targetFrameOpacity, 0.1);
+
           if (isHovered || isFocused) {
             frameRing.material.color.setHex(0xffffff);
           } else {
             frameRing.material.color.setHex(0xffceb5);
           }
+        }
+
+        // Smoothly brighten the photo mesh when hovered or focused
+        const photoCircle = group.children[1] as THREE.Mesh;
+        if (photoCircle && photoCircle.material instanceof THREE.MeshBasicMaterial) {
+          const targetOpacity = (isHovered || isFocused) ? 1.0 : 0.75;
+          photoCircle.material.opacity = THREE.MathUtils.lerp(photoCircle.material.opacity, targetOpacity, 0.1);
+        }
+
+        // Smoothly expand and brighten the glowing background behind
+        const glowBack = group.children[2] as THREE.Mesh;
+        if (glowBack && glowBack.material instanceof THREE.MeshBasicMaterial) {
+          const targetGlowOpacity = (isHovered || isFocused) ? 0.65 : 0.25;
+          glowBack.material.opacity = THREE.MathUtils.lerp(glowBack.material.opacity, targetGlowOpacity, 0.1);
+
+          const targetGlowScale = (isHovered || isFocused) ? 1.25 : 1.0;
+          glowBack.scale.lerp(new THREE.Vector3(targetGlowScale, targetGlowScale, 1.0), 0.1);
         }
       });
 
