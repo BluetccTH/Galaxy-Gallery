@@ -2,46 +2,61 @@ import { GalaxyConfig } from "./types";
 
 export const DEFAULT_CONFIG: GalaxyConfig = {
   pageName: "ICE",
-  startTitle: "Wormhole Portal",
-  startSubtitle: "For you, who makes my universe shine",
+
+  startTitle: "Welcome to Our Universe",
+
+  startSubtitle:
+    "Every star tells a story, but my favorite story has always been you.",
+
   includeMusic: true,
-  musicTrackName: "I Really Want to Stay at Your House - Lofi",
+
+  musicTrackName: "I Really Want to Stay at Your House (Lofi)",
+
   orbitSpeed: 1.0,
-  phrases: [
-    "ETERNAL LOVE ✦",
-    "INFINITE ∞",
-    "ALWAYS WITH YOU",
-    "MY HEART IS YOURS",
-    "GALAXIES OF YOU",
-    "EVERY HEARTBEAT COSMOS",
-    "ACROSS TIME",
-    "POLAR STAR ★",
-    "ETERNAL ORBIT",
-    "GRAVITY OF LOVE"
-  ],
+
+ phrases: [
+  "YOU ARE MY HOME",
+  "YOUR SMILE > THE STARS",
+  "ONLY YOU ♡",
+  "IN EVERY UNIVERSE",
+  "MY FOREVER",
+  "LOVE WITHOUT END",
+  "BLUE HEART",
+  "YOU ARE ENOUGH",
+  "ETERNALLY YOURS",
+  "I'D CHOOSE YOU AGAIN"
+],
+
   panels: [
     {
       id: "panel-1",
-      title: "Our First Kiss",
-      message: "The day our lips met, the entire universe held its breath. Since then, every kiss of yours is my favorite galaxy.",
+      title: "The First Time",
+      message:
+        "I still remember the moment everything changed. From that day on, my heart quietly decided that it wanted to stay with you.",
       photoUrl: "/IMG_5611.jpg"
     },
+
     {
       id: "panel-2",
-      title: "Under the Stars",
-      message: "That night we looked at the sky together and I understood that no star shines as bright as your eyes when you look at me.",
+      title: "Our Little World",
+      message:
+        "Whenever I'm with you, the rest of the world becomes silent. It's just you, me, and a universe that suddenly feels complete.",
       photoUrl: "/IMG_5472.jpg"
     },
+
     {
       id: "panel-3",
       title: "Your Smile",
-      message: "Your smile is the light that cuts through any darkness. It is my favorite sunrise, my reason to wake up every day.",
+      message:
+        "Your smile is brighter than every constellation I've ever seen. It turns ordinary moments into memories I'll treasure forever.",
       photoUrl: "/IMG_5471.jpg"
     },
+
     {
       id: "panel-4",
-      title: "Forever",
-      message: "I don't care how many lives I have to live, in each one of them I will choose you. Forever and one day more.",
+      title: "My Promise",
+      message:
+        "No matter where life takes us, I'll always choose you. Again. Again. And every single time after that.",
       photoUrl: "/IMG_3239.jpg"
     }
   ]
