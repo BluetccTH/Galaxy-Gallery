@@ -39,6 +39,9 @@ export default function App() {
           if (parsed.musicTrackName === "lolivac eternal-love") {
             parsed.musicTrackName = "I Really Want to Stay at Your House";
           }
+          if (parsed.orbitSpeed === undefined) {
+            parsed.orbitSpeed = 1.0;
+          }
           if (Array.isArray(parsed.panels)) {
             parsed.panels = parsed.panels.map((p: any) => {
               if (p.id === "panel-1" && (p.photoUrl.includes("unsplash.com") || p.photoUrl === "./IMG_5611.jpg")) {
@@ -112,7 +115,12 @@ export default function App() {
 
     let currentProg = 0;
     const interval = setInterval(() => {
-      currentProg += 1;
+      // Exponential warp speed acceleration
+      const accel = Math.max(1, Math.floor(1 + (currentProg / 12) ** 1.3));
+      currentProg += accel;
+      if (currentProg > 100) {
+        currentProg = 100;
+      }
       setWarpProgress(currentProg);
 
       // Smoothly fade in audio volume as we warp through the wormhole
@@ -120,17 +128,17 @@ export default function App() {
         cosmicAudio.setVolume(0.05 + (currentProg / 100) * 0.25);
       }
 
-      // Staggered cinematic messages
-      if (currentProg === 15) {
-        setWarpText("✨ ALIGNING EVENT HORIZON APERTURE / กำลังจัดแนวเส้นขอบฟ้าเหตุการณ์...");
-      } else if (currentProg === 35) {
-        setWarpText("💫 UNFOLDING CHRONOS MEMORIES / กำลังคลี่คลายกล่องความทรงจำแห่งกาลเวลา...");
-      } else if (currentProg === 55) {
-        setWarpText("🌀 ACCELERATING THROUGH COGNITIVE NEBULA / กำลังขับเคลื่อนผ่านเนบิวลาแห่งความคิดถึง...");
-      } else if (currentProg === 75) {
-        setWarpText("🔥 COLLAPSING DISTANCE TO ZERO / กำลังบิดระยะทางระหว่างใจสองดวงให้เป็นศูนย์...");
-      } else if (currentProg === 92) {
+      // Staggered cinematic messages using ranges (else-if) so none are skipped due to acceleration steps
+      if (currentProg >= 92) {
         setWarpText("✦ PORTAL ENERGIZE! INITIALIZING FINAL DIMENSIONAL JUMP ✦");
+      } else if (currentProg >= 75) {
+        setWarpText("🔥 COLLAPSING DISTANCE TO ZERO / กำลังบิดระยะทางระหว่างใจสองดวงให้เป็นศูนย์...");
+      } else if (currentProg >= 55) {
+        setWarpText("🌀 ACCELERATING THROUGH COGNITIVE NEBULA / กำลังขับเคลื่อนผ่านเนบิวลาแห่งความคิดถึง...");
+      } else if (currentProg >= 35) {
+        setWarpText("💫 UNFOLDING CHRONOS MEMORIES / กำลังคลี่คลายกล่องความทรงจำแห่งกาลเวลา...");
+      } else if (currentProg >= 15) {
+        setWarpText("✨ ALIGNING EVENT HORIZON APERTURE / กำลังจัดแนวเส้นขอบฟ้าเหตุการณ์...");
       }
 
       if (currentProg >= 100) {
@@ -138,9 +146,9 @@ export default function App() {
         setTimeout(() => {
           setHasStarted(true);
           setIsWarping(false);
-        }, 1200); // Hold at 100% for a brief moment for perfect dramatic timing
+        }, 350); // Snappy post-warp hold (reduced from 1200ms to 350ms)
       }
-    }, 32); // Beautiful 3.2 seconds transition
+    }, 16); // High frame-rate updates (16ms)
   };
 
   // Toggle audio directly
@@ -341,18 +349,34 @@ export default function App() {
               </motion.div>
 
               {/* Enter Button */}
-              <motion.button
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 1, duration: 0.8 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={handleEnterGalaxy}
-                className="px-8 py-3.5 bg-white/5 hover:bg-white border border-white/20 hover:border-white text-white hover:text-[#020205] rounded-full font-mono tracking-[0.2em] text-xs uppercase shadow-xl transition-all duration-300 flex items-center gap-3"
-              >
-                <Sparkles className="w-4 h-4 text-[#ffceb5]" />
-                Enter Galaxy
-              </motion.button>
+              <div className="relative group">
+                {/* Glowing Aura Background */}
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{
+                    scale: [1, 1.06, 1],
+                    opacity: [0.35, 0.65, 0.35],
+                  }}
+                  transition={{
+                    scale: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+                    opacity: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+                  }}
+                  className="absolute inset-y-0 -inset-x-6 bg-gradient-to-r from-orange-500/20 via-pink-500/25 to-purple-500/20 rounded-full blur-xl group-hover:opacity-100 group-hover:scale-115 group-hover:blur-2xl transition-all duration-500 pointer-events-none"
+                />
+
+                <motion.button
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 1, duration: 0.8 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={handleEnterGalaxy}
+                  className="relative z-10 px-8 py-3.5 bg-white/5 hover:bg-white border border-white/20 hover:border-white text-white hover:text-[#020205] rounded-full font-mono tracking-[0.2em] text-xs uppercase shadow-xl hover:shadow-[0_0_35px_rgba(255,206,181,0.55)] transition-all duration-300 flex items-center gap-3 cursor-pointer"
+                >
+                  <Sparkles className="w-4 h-4 text-[#ffceb5] group-hover:rotate-12 transition-transform duration-300" />
+                  Enter Galaxy
+                </motion.button>
+              </div>
             </div>
 
             {/* Creator Attribution */}
@@ -579,22 +603,29 @@ export default function App() {
       </AnimatePresence>
 
       {/* 2. CORE INTERACTIVE 3D GALAXY WORLD */}
-      {hasStarted && (
-        <div className="absolute inset-0 w-full h-full flex">
-          
-          {/* ThreeJS Rendering Stage */}
-          <div className="flex-1 h-full relative z-0">
-            <GalaxyViewer
-              config={config}
-              onSelectPanel={(p) => setFocusedPanel(p)}
-              focusedPanelId={focusedPanel?.id || null}
-              onClearFocus={() => setFocusedPanel(null)}
-            />
+      <div
+        className="absolute inset-0 w-full h-full flex transition-opacity duration-[1500ms] ease-in-out"
+        style={{
+          opacity: hasStarted ? 1 : 0,
+          pointerEvents: hasStarted ? "auto" : "none",
+          zIndex: hasStarted ? 10 : 0,
+        }}
+      >
+        
+        {/* ThreeJS Rendering Stage */}
+        <div className="flex-1 h-full relative z-0">
+          <GalaxyViewer
+            config={config}
+            onSelectPanel={(p) => setFocusedPanel(p)}
+            focusedPanelId={focusedPanel?.id || null}
+            onClearFocus={() => setFocusedPanel(null)}
+          />
 
 
 
             {/* Core Controls Header Overlay */}
-            <header className="absolute top-0 left-0 right-0 p-5 z-20 flex items-center justify-between pointer-events-none">
+            {hasStarted && (
+              <header className="absolute top-0 left-0 right-0 p-5 z-20 flex items-center justify-between pointer-events-none">
               {/* Left Brand Badge */}
               <motion.div
                 initial={{ x: -20, opacity: 0 }}
@@ -645,11 +676,12 @@ export default function App() {
 
               </motion.div>
             </header>
+            )}
           </div>
 
           {/* 3. SIDEBAR CUSTOMIZER DRAWER */}
           <AnimatePresence>
-            {isEditorOpen && (
+            {hasStarted && isEditorOpen && (
               <motion.aside
                 initial={{ x: "100%", opacity: 0.9 }}
                 animate={{ x: 0, opacity: 1 }}
@@ -773,6 +805,31 @@ export default function App() {
                         <p className="text-[10px] text-slate-500 font-mono">
                           Appears below the start title: {config.startSubtitle.length}/60
                         </p>
+                      </div>
+
+                      {/* Galaxy Rotation / Orbit Speed Slider */}
+                      <div className="space-y-2 border-t border-white/10 pt-4">
+                        <div className="flex justify-between items-center">
+                          <label className="text-xs font-mono text-slate-400 uppercase tracking-wider">
+                            Galaxy Orbital Speed
+                          </label>
+                          <span className="text-xs font-mono text-[#ffceb5] font-semibold bg-[#ffceb5]/10 px-2 py-0.5 rounded">
+                            {config.orbitSpeed.toFixed(1)}x
+                          </span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0.1"
+                          max="3.0"
+                          step="0.1"
+                          value={config.orbitSpeed}
+                          onChange={(e) => updateConfigField("orbitSpeed", parseFloat(e.target.value))}
+                          className="w-full h-1 bg-slate-900 border border-white/10 rounded-lg appearance-none cursor-pointer accent-[#ffceb5]"
+                        />
+                        <div className="flex justify-between text-[10px] text-slate-500 font-mono">
+                          <span>Contemplative (0.1x)</span>
+                          <span>Warp (3.0x)</span>
+                        </div>
                       </div>
                     </motion.div>
                   )}
@@ -996,7 +1053,7 @@ export default function App() {
 
           {/* 4. IMMERSIVE ROMANTIC MEMORY MODAL (POPUP) */}
           <AnimatePresence>
-            {focusedPanel && (
+            {hasStarted && focusedPanel && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -1079,7 +1136,6 @@ export default function App() {
           }} />
 
         </div>
-      )}
       </motion.div>
     )}
   </AnimatePresence>
