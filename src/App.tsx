@@ -33,7 +33,7 @@ export default function App() {
         const parsed = JSON.parse(saved);
         // Automatically migrate any old Unsplash URLs or relative paths to the correct newly uploaded public images
         if (parsed) {
-          if (parsed.pageName === "Galaxy Gallery") {
+          if (parsed.pageName === "Galaxy Gallery" || parsed.pageName?.toLowerCase().includes("galaxy") || !parsed.pageName) {
             parsed.pageName = "ICE";
           }
           if (parsed.musicTrackName === "lolivac eternal-love") {
