@@ -195,7 +195,7 @@ export default function PasscodeGate({ onSuccess }: PasscodeGateProps) {
 
             <div className="space-y-1.5 w-full">
               <h3 className="text-xl font-black bg-gradient-to-r from-sky-400 to-cyan-200 bg-clip-text text-transparent">
-                Compatibility Analyzer
+                Galaxy Gallery
               </h3>
               <p className="text-xs text-slate-400 tracking-wider font-semibold uppercase">
                 Kao 🪐 Ice Portal
