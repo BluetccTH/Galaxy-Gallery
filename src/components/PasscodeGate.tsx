@@ -317,7 +317,7 @@ export default function PasscodeGate({ onSuccess }: PasscodeGateProps) {
                     className="text-[11px] text-sky-400 font-medium flex items-center gap-1"
                   >
                     <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-spin" />
-                    <span>คำใบ้: วันสำคัญแสนพิเศษ หรือแอบถามก้าวดูสิ 🤫 (PIN: 6107)</span>
+                    <span>คำใบ้: วันสำคัญแสนพิเศษ หรือแอบถามก้าวดูสิ 🤫</span>
                   </motion.span>
                 ) : (
                   <motion.span
