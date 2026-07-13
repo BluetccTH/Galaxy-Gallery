@@ -15,7 +15,11 @@ import {
   Maximize2,
   ExternalLink,
   ChevronRight,
-  ChevronDown
+  ChevronDown,
+  Mail,
+  Key,
+  Star,
+  BookOpen
 } from "lucide-react";
 import { GalaxyConfig, GalleryPanel } from "./types";
 import { DEFAULT_CONFIG } from "./defaultConfig";
@@ -37,10 +41,22 @@ export default function App() {
             parsed.pageName = "ICE";
           }
           if (parsed.musicTrackName === "lolivac eternal-love") {
-            parsed.musicTrackName = "I Really Want to Stay at Your House - Lofi";
+            parsed.musicTrackName = "I Really Want to Stay at Your House";
           }
           if (parsed.orbitSpeed === undefined) {
             parsed.orbitSpeed = 1.0;
+          }
+          if (parsed.easterEggEnabled === undefined) {
+            parsed.easterEggEnabled = true;
+          }
+          if (parsed.easterEggTitle === undefined || parsed.easterEggTitle === "จดหมายรักในห้วงอวกาศ / Cosmic Love Letter") {
+            parsed.easterEggTitle = "ถึงพี่ไอซ์... คนที่หนูรัก";
+          }
+          if (parsed.easterEggContent === undefined || parsed.easterEggContent.includes("ถึงเธอคนสำคัญ...")) {
+            parsed.easterEggContent = "ถึงพี่ไอซ์... คนที่หนูรัก\n\nมีคนเคยถามว่าทำไมถึงรักพี่ไอซ์ คำตอบของหนูอาจไม่ได้สวยหรูหรือซับซ้อนอะไร เพราะความรู้สึกนี้ไม่ได้เกิดขึ้นจากเหตุผลเพียงข้อเดียว แต่มันค่อย ๆ เติบโตจากช่วงเวลาธรรมดา จากการได้รู้จัก ได้พูดคุย ได้เห็นรอยยิ้ม และได้รู้สึกว่าการมีพี่อยู่ในชีวิต ทำให้ทุกวันมีความหมายมากขึ้น\n\nพี่ไอซ์เป็นคนที่ทำให้หนูรู้ว่าความสุขไม่จำเป็นต้องเป็นเรื่องยิ่งใหญ่ บางครั้งแค่ได้คุยกัน ได้ถามไถ่ว่าวันนี้เป็นยังไง หรือได้เห็นพี่มีความสุข หนูก็ยิ้มตามได้แล้ว ความรู้สึกเหล่านี้เกิดขึ้นโดยธรรมชาติ จนวันหนึ่งหนูก็รู้ตัวว่าพี่กลายเป็นคนสำคัญในหัวใจไปแล้ว\n\nหนูไม่ได้รักพี่เพราะพี่สมบูรณ์แบบ เพราะไม่มีใครบนโลกนี้สมบูรณ์แบบอยู่แล้ว แต่หนูรักในสิ่งที่พี่เป็น ทั้งข้อดี รอยยิ้ม ความอ่อนโยน และแม้แต่วันที่พี่เหนื่อยหรืออ่อนแอ หนูก็ยังอยากอยู่ข้าง ๆ เพื่อเป็นกำลังใจให้เสมอ\n\nความรักของหนูอาจไม่ได้ยิ่งใหญ่ถึงขั้นเปลี่ยนโลก แต่สำหรับหนู มันคือความตั้งใจที่จะดูแล เอาใจใส่ และหวังดีกับพี่ในทุก ๆ วัน ไม่ว่าจะเกิดอะไรขึ้น หนูอยากเป็นคนหนึ่งที่ทำให้พี่รู้สึกว่า อย่างน้อยก็ยังมีคนที่คอยเชื่อในตัวพี่ และพร้อมอยู่เคียงข้างเสมอ\n\nหนูไม่รู้ว่าอนาคตจะเป็นอย่างไร เราอาจต้องเจออุปสรรค ความไม่เข้าใจ หรือเรื่องราวอีกมากมาย แต่สิ่งหนึ่งที่หนูมั่นใจคือ ความรู้สึกที่มีต่อพี่นั้นเป็นความรู้สึกที่จริงใจ หนูไม่อยากเร่งรัด ไม่อยากบังคับให้ทุกอย่างเป็นไปตามที่หวัง แค่อยากใช้ทุกช่วงเวลาที่มี ทำให้ดีที่สุด และรักษาความสัมพันธ์ของเราให้มีคุณค่าที่สุด\n\nถ้าวันไหนพี่เหนื่อย หนูอยากเป็นที่พักใจให้พี่ ถ้าวันไหนพี่มีความสุข หนูก็อยากเป็นคนที่ได้ร่วมยินดีกับพี่ และถ้าวันไหนพี่รู้สึกว่าตัวเองไม่เก่งพอ หนูอยากเป็นคนที่คอยบอกพี่ว่า พี่ยังมีคุณค่า และมีคนที่รักพี่ในแบบที่พี่เป็น\n\nสุดท้ายนี้ หนูอยากขอบคุณพี่ไอซ์ที่เข้ามาเป็นส่วนหนึ่งของชีวิต ไม่ว่าความสัมพันธ์ของเราจะเดินไปในทิศทางไหน พี่จะเป็นความทรงจำที่ดีและมีความหมายสำหรับหนูเสมอ\n\nหนูรักพี่ไอซ์ ไม่ใช่เพราะพี่เป็นคนที่ดีที่สุดในสายตาของคนทั้งโลก แต่เพราะสำหรับหนู พี่คือคนที่ทำให้หัวใจดวงนี้เต้นแรงและอบอุ่นได้มากที่สุด\n\nขอบคุณที่ทำให้หนูได้รู้จักคำว่า \"รัก\" ในความหมายที่สวยงาม\n\nด้วยความรักและความจริงใจจากหัวใจของหนู 🤍";
+          }
+          if (parsed.easterEggIcon === undefined) {
+            parsed.easterEggIcon = "Heart";
           }
           if (Array.isArray(parsed.panels)) {
             parsed.panels = parsed.panels.map((p: any) => {
@@ -73,8 +89,21 @@ export default function App() {
   const [warpText, setWarpText] = useState("");
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
+  const [isSecretOpen, setIsSecretOpen] = useState(false);
   const [focusedPanel, setFocusedPanel] = useState<GalleryPanel | null>(null);
   const [activeTab, setActiveTab] = useState<"portal" | "music" | "phrases" | "panels">("panels");
+  const [iceClickCount, setIceClickCount] = useState(0);
+
+  const handleIceClick = () => {
+    setIceClickCount((prev) => {
+      const next = prev + 1;
+      if (next >= 5) {
+        setIsSecretOpen(true);
+        return 0;
+      }
+      return next;
+    });
+  };
 
   // Local storage synchronization
   useEffect(() => {
@@ -635,7 +664,11 @@ export default function App() {
                 <span className="uppercase tracking-[0.4em] text-[10px] text-white/50 block font-mono leading-none">
                   Page Name
                 </span>
-                <h1 className="font-serif text-3xl md:text-4xl italic leading-none font-light text-[#ffceb5]">
+                <h1 
+                  onClick={handleIceClick}
+                  title="Unlock secrets"
+                  className="font-serif text-3xl md:text-4xl italic leading-none font-light text-[#ffceb5] cursor-pointer select-none active:scale-95 transition-transform duration-100"
+                >
                   {config.pageName}
                 </h1>
               </motion.div>
@@ -674,9 +707,14 @@ export default function App() {
                 </button>
 
 
+
+
               </motion.div>
             </header>
             )}
+
+
+
           </div>
 
           {/* 3. SIDEBAR CUSTOMIZER DRAWER */}
@@ -1041,6 +1079,8 @@ export default function App() {
                       </div>
                     </motion.div>
                   )}
+
+
                 </div>
 
                 {/* Footer status */}
@@ -1128,10 +1168,98 @@ export default function App() {
             )}
           </AnimatePresence>
 
+          {/* 5. IMMERSIVE EASTER EGG ARTICLE/LETTER MODAL */}
+          <AnimatePresence>
+            {hasStarted && isSecretOpen && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="absolute inset-0 z-50 bg-slate-950/90 backdrop-blur-xl flex items-center justify-center p-4 md:p-8"
+              >
+                {/* Background click closes */}
+                <div className="absolute inset-0 cursor-zoom-out" onClick={() => setIsSecretOpen(false)} />
+
+                {/* Floating stars or light leaks */}
+                <div className="absolute w-[500px] h-[500px] rounded-full bg-[#ffceb5]/5 blur-3xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+                <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-[#ff3e00]/5 blur-2xl pointer-events-none" />
+                <div className="absolute bottom-10 right-10 w-40 h-40 rounded-full bg-[#8b5cf6]/5 blur-2xl pointer-events-none" />
+
+                {/* Content Container */}
+                <motion.div
+                  initial={{ scale: 0.95, y: 30, opacity: 0 }}
+                  animate={{ scale: 1, y: 0, opacity: 1 }}
+                  exit={{ scale: 0.95, y: 30, opacity: 0 }}
+                  transition={{ type: "spring", damping: 25, stiffness: 120 }}
+                  className="relative w-full max-w-2xl bg-gradient-to-b from-slate-950/80 to-[#020205]/95 border border-white/10 rounded-3xl shadow-[0_0_50px_rgba(255,206,181,0.15)] z-50 flex flex-col max-h-[85vh] overflow-hidden"
+                >
+                  {/* Header decoration */}
+                  <div className="p-6 md:p-8 pb-4 border-b border-white/5 flex items-center justify-between relative bg-slate-950/40">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-[#ffceb5]/10 rounded-xl border border-[#ffceb5]/20 animate-pulse">
+                        {config.easterEggIcon === "Heart" && <Heart className="w-5 h-5 fill-current text-rose-500" />}
+                        {config.easterEggIcon === "Sparkles" && <Sparkles className="w-5 h-5 text-[#ffceb5]" />}
+                        {config.easterEggIcon === "Star" && <Star className="w-5 h-5 fill-current text-amber-400" />}
+                        {config.easterEggIcon === "BookOpen" && <BookOpen className="w-5 h-5 text-[#ffceb5]" />}
+                        {config.easterEggIcon === "Mail" && <Mail className="w-5 h-5 text-[#ffceb5]" />}
+                        {config.easterEggIcon === "Key" && <Key className="w-5 h-5 text-[#ffceb5]" />}
+                      </div>
+                      <div className="text-left">
+                        <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-slate-400 block">
+                          Easter Egg Secret Archive
+                        </span>
+                        <h2 className="text-lg md:text-xl font-serif text-white italic font-light tracking-wide mt-0.5">
+                          {config.easterEggTitle || "Secret Document"}
+                        </h2>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => setIsSecretOpen(false)}
+                      className="p-2 rounded-xl bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer"
+                    >
+                      <X className="w-4.5 h-4.5" />
+                    </button>
+                  </div>
+
+                  {/* Scrollable Article Area */}
+                  <div className="flex-1 overflow-y-auto p-6 md:p-10 space-y-6 scrollbar-thin scrollbar-thumb-white/10 relative">
+                    {/* Subtle graphic in background */}
+                    <div className="absolute top-10 right-10 opacity-5 pointer-events-none">
+                      <Sparkles className="w-48 h-48 text-white" />
+                    </div>
+
+                    {/* Letter / Article Content */}
+                    <div className="relative z-10 text-slate-100 font-serif text-base md:text-lg leading-relaxed whitespace-pre-wrap select-text selection:bg-[#ffceb5] selection:text-[#020205] italic font-light space-y-4 text-left">
+                      {config.easterEggContent ? (
+                        config.easterEggContent.split("\n\n").map((paragraph, index) => (
+                          <p key={index} className="text-slate-200/95 tracking-wide">
+                            {paragraph}
+                          </p>
+                        ))
+                      ) : (
+                        <p className="text-slate-400">เขียนบทความของคุณที่นี่ในแผงแก้ไขด้านข้าง...</p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Footer */}
+                  <div className="p-4 md:p-6 border-t border-white/5 bg-slate-950/40 text-center flex items-center justify-between text-[10px] font-mono text-slate-500 uppercase tracking-widest">
+                    <span>Dimension Lock • Locked under {config.pageName} Gravity</span>
+                    <span className="animate-pulse">Click outside to dismiss</span>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {/* Escape key to close modal or clear focus */}
           <EscapeListener onEscape={() => {
             if (focusedPanel) {
               setFocusedPanel(null);
+            }
+            if (isSecretOpen) {
+              setIsSecretOpen(false);
             }
           }} />
 
